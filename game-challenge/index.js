@@ -34,12 +34,13 @@ const scorePlayer2 = document.getElementsByClassName("grid_score2")[0];
 const boardCoordinates = gameboard.getBoundingClientRect();
 console.log(boardCoordinates);
 const paddle1Coordinates = paddle1.getBoundingClientRect();
+
 const paddle2Coordinates = paddle2.getBoundingClientRect();
-const initialBallCoordinates = pongBall.getBoundingClientRect();
 
 
 
-let gameState = "start"; 
+
+let gameState = "pause"; 
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === "Return") {
@@ -48,32 +49,49 @@ document.addEventListener("keydown", (e) => {
  
 });
 
-if (gameState == "Start", () => {
+if (gameState === "start") {
+    console.log(gameState);
         if (!b.move) {
             b.ani = requestAnimationFrame(mover);
             b.move = true;
         }
-    });
+    };
  console.log(mover);
 
-
+//  if (gameState == "Start") {
+//     if (e.key == "w") {
+//       paddle_1.style.top =
+//         Math.max(
+//           board_coord.top,
+//           paddle_1_coord.top - window.innerHeight * 0.06
+//         ) + 'px';
+//       paddle_1_coord = paddle_1.getBoundingClientRect();
+//     }
+//     if (e.key == 's') {
+//       paddle_1.style.top =
+//         Math.min(
+//           board_coord.bottom - paddle_common.height,
+//           paddle_1_coord.top + window.innerHeight * 0.06
+//         ) + 'px';
+//       paddle_1_coord = paddle_1.getBoundingClientRect();
+//     }
   
 
 
   
   function mover() {
-    if (b.x > 900 - b.w || b.x < 0) {
+    if (b.x > 500 - b.w || b.x < 0) {
       b.dx *= -1;
     }
-    if (b.y > 600 - b.h || b.y < 0) {
+    if (b.y > 500 - b.h || b.y < 0) {
       b.dy *= -1;
     }
   
     b.x += b.dx * b.speed;
     b.y += b.dy * b.speed;
-    ball.style.left = `${b.x}px`;
-    ball.style.top = `${b.y}px`;
-    ball.style.backgroundColor = "purple";
+    pongBall.style.left = `${b.x}px`;
+    pongBall.style.top = `${b.y}px`;
+    pongBall.style.backgroundColor = "purple";
     if (b.move) {
       b.ani = requestAnimationFrame(mover);
     }
